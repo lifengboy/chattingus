@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="chattingus-web:war">
-    <output-path>$PROJECT_DIR$/chattingus-web/target</output-path>
-    <root id="archive" name="chatting-web.war">
-      <element id="artifact" artifact-name="chattingus-web:war exploded" />
-    </root>
-  </artifact>
-</component>
