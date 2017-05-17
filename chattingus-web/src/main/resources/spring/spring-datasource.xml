@@ -11,12 +11,6 @@
     <!--鹰眼trace日志-->
     <!--<bean id="log-filter" class="com.raycloud.eagle.trace.db.DataBaseTraceLogFilterForLog4j"/>-->
 
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="ignoreUnresolvablePlaceholders" value="true" />
-        <property name="location" value="classpath:dao/development.properties"/>
-    </bean>
-
     <bean id="dataSource"
           class="org.apache.commons.dbcp.BasicDataSource"
            destroy-method="close">
