@@ -1,6 +1,7 @@
 package com.chattingus.dao;
 
 import com.chattingus.domain.Friend;
+import com.chattingus.domain.User;
 import com.chattingus.query.FriendQuery;
 import org.springframework.stereotype.Repository;
 
@@ -111,4 +112,9 @@ public class FriendDAO extends CobarClientBaseDao {
     }
 
 
+    public List<Friend> getFriendListByUserId(User user) {
+        Map<String, Object> params = new HashMap<String, Object>(1);
+        params.put("userId", user.getUserId());
+        return (List<Friend>) getSqlMapClientTemplate().queryForList("Friend.getFriendListByUserId", params);
+    }
 }

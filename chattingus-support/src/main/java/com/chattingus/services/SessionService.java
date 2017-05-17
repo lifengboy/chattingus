@@ -16,11 +16,12 @@ public class SessionService {
 
     private static final String SESSION_USER = "chattingusUser";
 
-    private ThreadLocal<HttpSession> sessionLocal = new ThreadLocal<HttpSession>();
+//    private ThreadLocal<HttpSession> sessionLocal = new ThreadLocal<HttpSession>();
+    private HttpSession session;
 
     @ModelAttribute
     public void setHttpServlet(HttpSession session) {
-        this.sessionLocal.set(session);
+        this.session = session;
     }
 
     /**
@@ -103,8 +104,7 @@ public class SessionService {
      *
      * @return
      */
-    public  HttpSession getHttpSession() {
-        HttpSession session = this.sessionLocal.get();
+    private HttpSession getHttpSession() {
         return session;
     }
 

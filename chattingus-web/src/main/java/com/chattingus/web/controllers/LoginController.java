@@ -53,7 +53,7 @@ public class LoginController extends BaseController{
             res.setSubCode(ErrorCode.USERNAME_OR_PASSWORD_IS_WRONG_CODE);
             return res;
         }
-        //登录之后保存当前机器的ip，等信息
+        //登录之后保存当前机器的ip
         queryUser = userService.saveUserMessage(request.getRemoteAddr(),queryUser);
 
         // 登录成功 设置上下文环境
@@ -74,6 +74,8 @@ public class LoginController extends BaseController{
     @RequestMapping(value = "/out", method = RequestMethod.GET)
     public ModelAndView logout() {
         ModelAndView modelAndView = new ModelAndView("login");
+        //改变在线状态交给webSocket
+        //从session中移除
         sessionService.deleteUser();
         return modelAndView;
     }

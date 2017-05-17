@@ -34,8 +34,6 @@ $(function(){
         }
     }
 
-
-
     function submit(searchdata) {
         $.ajax({
             url: '/user/getUser',

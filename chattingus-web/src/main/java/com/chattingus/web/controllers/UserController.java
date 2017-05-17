@@ -2,6 +2,7 @@ package com.chattingus.web.controllers;
 
 import com.chattingus.commons.response.ServiceResponse;
 import com.chattingus.domain.User;
+import com.chattingus.services.FriendService;
 import com.chattingus.services.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.List;
 /**
  * @author 
  * @since 2017-04-07
@@ -23,6 +24,9 @@ public class UserController extends BaseController{
 
     @Resource
     UserService userService;
+
+    @Resource
+    FriendService friendService;
 
     /**
      * 消息

@@ -131,6 +131,16 @@
         </iterate>
     </select>
 
+    <select id="getUserListByUserIds" resultMap="user" parameterClass="hashMap">
+        SELECT user_id , username , password , nick , avatar , real_name , birthday , gender , tel , register_date ,
+        e_mail , privilege , status , ip FROM user
+        WHERE
+        user_id in
+        <iterate conjunction="," open="(" close=")" property="keys">
+            #keys[]#
+        </iterate>
+    </select>
+
     <!-- 根据主键删除 -->
     <delete id="User.deleteByKey" parameterClass="hashMap">
         DELETE FROM user
@@ -384,5 +394,9 @@
         username=#username# AND password=#password#
     </select>
 
+    <update id="setAllUserOffLine">
+        UPDATE user
+        SET status = 0
+    </update>
 
 </sqlMap>

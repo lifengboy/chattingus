@@ -102,8 +102,20 @@ public class UserService {
 
     public User saveUserMessage(String remoteAddr, User queryUser) {
         queryUser.setIp(remoteAddr);
-        queryUser.setStatus("1");
         userDAO.updateUserByUsername(queryUser);
         return queryUser;
+    }
+
+    public void changeOutline(User user, String status) {
+        user.setStatus(status);
+        userDAO.updateUserByUsername(user);
+    }
+
+    public List<User> getUserListByUserIds(List<Integer> ids) {
+        return userDAO.getUserListByUserIds(ids);
+    }
+
+    public int setAllUserOffLine() {
+       return userDAO.setAllUserOffLine();
     }
 }

@@ -1,16 +1,21 @@
 package com.chattingus.web.controllers;
 
+import com.chattingus.commons.response.ServiceResponse;
 import com.chattingus.domain.Friend;
+import com.chattingus.domain.Message;
 import com.chattingus.domain.User;
 import com.chattingus.services.FriendService;
+import com.chattingus.services.MessageService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 /**
  * @author 
  * @since 2017-04-07
@@ -22,6 +27,9 @@ public class FriendController extends BaseController{
 
     @Resource
     FriendService friendService;
+
+    @Resource
+    MessageService messageService;
 
     /**
      * 保存
@@ -40,11 +48,32 @@ public class FriendController extends BaseController{
     /**
      * 保存
      */
-    @RequestMapping(value="saveFriend")
+    @RequestMapping(value="submitAddFriend", method = RequestMethod.POST)
     @ResponseBody
-    public void saveFriend () throws Exception {
-//        WebResponse webResponse = new WebResponse();
-
+    public ServiceResponse submitAddFriend (HttpServletRequest request){
+        Integer mId = Integer.parseInt(request.getParameter("mId"));
+        Integer fromUserId = Integer.parseInt(request.getParameter("fromUserId"));
+        Integer toUserId = Integer.parseInt(request.getParameter("toUserId"));
+        ServiceResponse res = new ServiceResponse();
+        Friend f1 = new Friend();
+        f1.setUserId(fromUserId);
+        f1.setFriendId(toUserId);
+        Friend f2 = new Friend();
+        f2.setUserId(toUserId);
+        f2.setFriendId(fromUserId);
+        try {
+            friendService.addFriend(f1);
+            friendService.addFriend(f2);
+        }catch (Exception e){
+            logger.info("对方已是你的好友");
+            res.setSubMsg("对方已是你的好友");
+        }
+        //改变状态为已读
+        Message m = new Message();
+        m.setMId(mId);
+        m.setReadOrNot(1);
+        messageService.updateMessageByKey(m);
+        return res;
     }
 
     /**

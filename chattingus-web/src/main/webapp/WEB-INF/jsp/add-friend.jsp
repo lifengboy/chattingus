@@ -9,7 +9,8 @@
 <body>
 <h1>欢迎您</h1>
 你的ip是：${user.ip}
-用户名是：${user.username},us号是${user.userId},昵称是：${user.nick}<br/><br/>
+用户名是：${user.username},us号是<span id="userIdSpan">${user.userId}</span>,昵称是：${user.nick}<br/><br/>
+<div id="message"></div>
 <div class="ui message" id="tips">
     <i class="close icon" id="closetips"></i>
     <center>你可以通过US号码来搜索添加好友哦</center>
@@ -23,6 +24,8 @@
 
 </table>
 <script type="text/javascript" src="/src/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/src/js/message.js"></script>
 <script type="text/javascript" src="/src/js/add-friend.js"></script>
+<script src="/src/js/utils/template.js"></script>
 </body>
 </html>

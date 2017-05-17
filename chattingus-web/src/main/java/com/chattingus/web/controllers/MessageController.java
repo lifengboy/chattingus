@@ -1,18 +1,23 @@
 package com.chattingus.web.controllers;
 
+import com.alibaba.fastjson.JSON;
 import com.chattingus.commons.response.ServiceResponse;
 import com.chattingus.domain.Friend;
 import com.chattingus.domain.Message;
 import com.chattingus.services.FriendService;
 import com.chattingus.services.MessageService;
+import org.apache.catalina.websocket.MessageInbound;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.nio.CharBuffer;
+import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.*;
 /**
  * @author
  * @since 2017-04-24
@@ -20,6 +25,7 @@ import java.util.Date;
 @Controller
 @RequestMapping(value = "message")
 public class MessageController extends BaseController {
+    private Logger logger = Logger.getLogger(MessageController.class);
 
     @Resource
     MessageService messageService;
@@ -52,6 +58,19 @@ public class MessageController extends BaseController {
             message.setSendTime(new Date());
             messageService.addMessage(message);
             res.setSubMsg("请求发送成功，请等待对方回复");
+            MessageInbound mw = MessageWebSocket.webSocketMap.get(toUserId);
+            if(mw != null){
+                logger.info("给在线ID"+toUserId+"发送验证消息");
+                Message message2 = new Message();
+                message2.setFromUserId(fromUserId);
+                message2.setToUserId(toUserId);
+                List<Message> confirmMessage = new ArrayList();
+                confirmMessage.add(message2);
+                ServiceResponse res2 = new ServiceResponse();
+                res2.put("serverMessageType", 1);
+                res2.put("confirmMessage", confirmMessage);
+                mw.getWsOutbound().writeTextMessage(CharBuffer.wrap(JSON.toJSONString(res2)));
+            }
         }
         return res;
     }

@@ -13,6 +13,16 @@ public class Friend implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    private User user;
+
     /**
      * id
      */

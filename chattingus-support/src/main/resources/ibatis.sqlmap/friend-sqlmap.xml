@@ -76,6 +76,13 @@
         </iterate>
     </select>
 
+    <!--getFriendListByUserId-->
+    <select id="getFriendListByUserId" resultMap="friend" parameterClass="hashMap">
+        SELECT id , user_id , friend_id FROM friend
+        WHERE
+        user_id=#userId#
+    </select>
+
     <!-- 根据主键删除 -->
     <delete id="Friend.deleteByKey" parameterClass="hashMap">
         DELETE FROM friend
@@ -144,7 +151,7 @@
             #id# ,            #userId# ,            #friendId#         )
     </insert>
     -->
-    <insert id="Friend.insertFriend" parameterClass="Friend">
+    <insert id="insertFriend" parameterClass="Friend">
         INSERT INTO friend
         <dynamic prepend="(" close=")">
             <isNotEmpty prepend="," property="id">

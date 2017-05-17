@@ -5,7 +5,6 @@ import com.chattingus.dao.Result;
 import com.chattingus.domain.Message;
 import com.chattingus.domain.User;
 import com.chattingus.query.MessageQuery;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -75,7 +74,7 @@ public class MessageService {
     /**
      * 根据主键更新
      */
-    public Integer updateMessageByKey(User user, Message message) {
+    public Integer updateMessageByKey(Message message) {
         return messageDAO.updateMessageByKey(message);
     }
 

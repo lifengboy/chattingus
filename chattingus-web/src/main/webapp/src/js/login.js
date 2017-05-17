@@ -13,7 +13,6 @@ $(function(){
             },
             success: function (json) {
                 if(json.success) {
-                    alert("登录成功");
                     window.location.href = '/user/message';
                 } else {
                     alert(json.subMsg);

@@ -8,9 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
     <link rel="shortcut icon" href="/src/image/logo.png">
     <title><decorate:title /></title>
-
     <link rel="stylesheet" href="/semantic-ui/semantic.min.css">
     <style>
         .dropdown-menu {
@@ -22,7 +24,8 @@
         }
     </style>
 </head>
-
+<script type="text/javascript" src="/src/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/src/js/default.js"></script>
 <body>
 <%--导航--%>
 <div class="ui container">
@@ -32,7 +35,7 @@
             <i class="icon mail"></i>消息
             <div class="floating ui red label">22</div>
         </a>
-        <a href="/user/friend" class="${nav=='friend'?'active':''} item">
+        <a href="/user/friend" id="friendA" class="${nav=='friend'?'active':''} item">
             <i class="icon users"></i>好友
             <div class="floating ui teal label">22</div>
         </a>

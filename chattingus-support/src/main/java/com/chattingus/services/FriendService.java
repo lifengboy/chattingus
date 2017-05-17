@@ -1,5 +1,6 @@
 package com.chattingus.services;
 
+import com.chattingus.commons.util.TransformUtil;
 import com.chattingus.dao.FriendDAO;
 import com.chattingus.query.FriendQuery;
 import com.chattingus.domain.Friend;
@@ -7,6 +8,7 @@ import com.chattingus.domain.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +20,9 @@ public class FriendService {
 
     @Resource
     FriendDAO friendDAO;
+
+    @Resource
+    UserService userService;
 
     /**
      * 插入
@@ -95,4 +100,18 @@ public class FriendService {
         return friendDAO.getFriendList(friendQuery);
     }
 
+    /**
+     * 根据条件查询
+     */
+    public List<Friend> getFriendListByUserId(User user) {
+        List<Friend> friendsTemp = friendDAO.getFriendListByUserId(user);
+        List<Integer> ids = new ArrayList<Integer>();
+        for(Friend friend : friendsTemp){
+            ids.add(friend.getFriendId());
+        }
+        List<User> users = userService.getUserListByUserIds(ids);
+        List<Friend> returnFriends = TransformUtil.TranformFromUsersToFriends(friendsTemp, users);
+        return returnFriends;
     }
+
+}

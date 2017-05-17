@@ -116,7 +116,7 @@
     </delete>
 
     <!-- 根据主键更新 -->
-    <update id="Message.updateMessageByKey" parameterClass="Message">
+    <update id="updateMessageByKey" parameterClass="Message">
         UPDATE message
         <dynamic prepend="SET">
             <isNotNull prepend="," property="mId">
