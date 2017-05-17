@@ -17,7 +17,8 @@ CREATE TABLE `user` (
 	`register_date`	timestamp NOT NULL default now() comment '注册日期',
 	`e_mail`	VARCHAR(128) comment '电子邮件',
 	`privilege`	VARCHAR(10) NOT NULL default 'user'  comment '权限，分为user和manager，默认user',
-	`status`	VARCHAR(2) NOT NULL default '0'  comment '状态，0是离线状态，1表示在线'
+	`status`	VARCHAR(2) NOT NULL default '0'  comment '状态，0是离线状态，1表示在线',
+	`ip`	VARCHAR(256) comment '用户登陆后所处的ip'
 );
 INSERT INTO user(`user_id`, `username`, `password`, `nick`, `real_name`, `tel`, `e_mail`, `privilege`) VALUES(1, 'lifeng', 'lifeng', '管理员','李风','15973667676', '1039415356@qq.com','manager');
 INSERT INTO user(`user_id`, `username`, `password`, `nick`, `real_name`, `tel`, `e_mail`) VALUES(2, 'account1', 'account1', '小明', '账号1','15973667611', 'aaa@qq.com');
@@ -35,5 +36,17 @@ CREATE TABLE `friend` (
 	`friend_id`	INT(10) NOT NULL comment '好友主键id'
 );
 
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message` (
+	`m_id` INT(20) AUTO_INCREMENT PRIMARY KEY comment 'id',
+	`from_user_id` INT(10) NOT NULL comment '发起用户主键id',
+	`to_user_id`	INT(10) NOT NULL comment '目的主键id',
+	`content`	VARCHAR(21820) comment '消息内容',
+	`read_or_not`	INT(10) NOT NULL comment '是否已读',
+	`message_type`	INT(10) NOT NULL comment '消息类型',
+	`send_time` timestamp NOT NULL default now() comment '发送日期'
+);
+
+alter table friend add constraint ui_fi unique (user_id, friend_id);
 
 
