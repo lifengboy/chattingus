@@ -20,6 +20,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**" />
             <mvc:exclude-mapping path="/src/**"/>
+            <mvc:exclude-mapping path="/register/**"/>
             <mvc:exclude-mapping path="/login/**"/>
             <mvc:exclude-mapping path="/semantic-ui/**"/>
             <bean
@@ -55,16 +56,6 @@
 
     <mvc:resources mapping="/semantic-ui/**" location="/semantic-ui/" />
     <mvc:resources mapping="/src/**" location="/src/" />
-    <mvc:resources mapping="/js/**" location="/js/" />
-    <mvc:resources mapping="/samples/**" location="/samples/" />
-    <mvc:resources mapping="/static/**" location="/static/" />
-    <mvc:resources mapping="/resources/**" location="/resources/" />
-    <mvc:resources mapping="/images/**" location="/images/" />
-    <mvc:resources mapping="/template/**" location="/template/" />
-    <mvc:resources mapping="/index.html" location="/index.html" />
-    <mvc:resources mapping="/guide.html" location="/guide.html" />
-    <mvc:resources mapping="/error.html" location="/error.html" />
-    <mvc:resources mapping="/fedev/**" location="/fedev/" />
 
 
 </beans>

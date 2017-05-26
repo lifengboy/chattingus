@@ -20,6 +20,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.util.Iterator;
@@ -46,6 +47,11 @@ public class MessageWebSocket extends WebSocketServlet{
 
     @Override
     protected StreamInbound createWebSocketInbound(String s, HttpServletRequest request) {
+        try {
+            request.setCharacterEncoding("utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         ServletContext sc = request.getServletContext();
         WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(sc);
         return new MyMessageInbound(wac);
@@ -120,6 +126,7 @@ public class MessageWebSocket extends WebSocketServlet{
                 //查看在线人数
                 log.info("有新连接加入！当前在线人数为" + webSocketMap.size());
                 //改变数据库在线状态
+                log.info("当前用户的昵称为："+currentUser.getNick());
                 userService.changeOutline(currentUser,"1");
                 MessageService messageService = (MessageService) wac.getBean("messageService");
                 FriendService friendService = (FriendService) wac.getBean("friendService");

@@ -24,7 +24,6 @@
 
 </table>
 <script type="text/javascript" src="/src/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="/src/js/message.js"></script>
 <script type="text/javascript" src="/src/js/add-friend.js"></script>
 <script src="/src/js/utils/template.js"></script>
 </body>

@@ -18,31 +18,28 @@
         .dropdown-menu {
             display: none;
         }
-
         .ui.fixed.table td, .ui.fixed.table th {
             overflow: inherit;
         }
     </style>
 </head>
-<script type="text/javascript" src="/src/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="/src/js/default.js"></script>
 <body>
 <%--导航--%>
 <div class="ui container">
     <br>
     <div class="ui five item pointing menu header">
-        <a href="/user/message" class="${nav=='message'?'active':''} item">
+        <a href="javascript:void(0);" id="messageA" class="${nav=='message'?'active':''} item">
             <i class="icon mail"></i>消息
             <div class="floating ui red label">22</div>
         </a>
-        <a href="/user/friend" id="friendA" class="${nav=='friend'?'active':''} item">
+        <a href="javascript:void(0);" id="friendA" class="${nav=='friend'?'active':''} item">
             <i class="icon users"></i>好友
             <div class="floating ui teal label">22</div>
         </a>
-        <a href="/friend/addFriend" class="${nav=='add-friend'?'active':''} item">
+        <a href="javascript:void(0);" id="addMessageA" class="${nav=='add-friend'?'active':''} item">
             <i class="icon user"></i>添加
         </a>
-        <a href="/user/setting" class="item">
+        <a href="javascript:void(0);" class="item">
             <i class="icon setting"></i>设置
         </a>
         <a href="/login/out" class="item">
@@ -51,8 +48,23 @@
         <div class="right menu">
         </div>
     </div>
-    <div class="ui segment">
-        <decorate:body />
+    <!--消息的div-->
+    <div class="ui tab clearfix active" id="messageDivMenu">
+        <div class="ui segment">
+            <jsp:include page="/WEB-INF/jsp/message.jsp" />
+        </div>
+    </div>
+    <!--好友的div-->
+    <div class="ui tab clearfix" id="friendDivMenu">
+        <div class="ui segment">
+            <jsp:include page="/WEB-INF/jsp/friend.jsp" />
+        </div>
+    </div>
+    <!--添加的div-->
+    <div class="ui tab clearfix" id="addFriendDivMenu">
+        <div class="ui segment">
+            <jsp:include page="/WEB-INF/jsp/add-friend.jsp" />
+        </div>
     </div>
 </div>
 
@@ -64,4 +76,9 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="/src/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/semantic-ui/semantic.min.js"></script>
+<script type="text/javascript" src="/src/js/utils/template.js"></script>
+<script type="text/javascript" src="/src/js/message.js"></script>
+<script type="text/javascript" src="/src/js/default.js"></script>
 </html>

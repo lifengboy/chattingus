@@ -17,7 +17,7 @@
     </appender>
 
     <appender name="ERROR_LOGGER" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="${webapp.root}/logs/error/error.log" />
+        <param name="File" value="${webapp.root}/logs/error.log" />
         <param name="Append" value="true" />
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
         <param name="MaxBackupIndex" value="10" />

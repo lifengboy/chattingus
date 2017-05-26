@@ -120,6 +120,13 @@
         WHERE
         user_id=#userId#
     </select>
+    <!-- 根据username查询 -->
+    <select id="getUserByUsername" resultMap="user" parameterClass="hashMap">
+        SELECT user_id , username , password , nick , avatar , real_name , birthday , gender , tel , register_date ,
+        e_mail , privilege , status , ip FROM user
+        WHERE
+        username=#username#
+    </select>
     <select id="User.getUsersByKeys" resultMap="user" parameterClass="hashMap">
         SELECT user_id , username , password , nick , avatar , real_name , birthday , gender , tel , register_date ,
         e_mail , privilege , status , ip FROM user

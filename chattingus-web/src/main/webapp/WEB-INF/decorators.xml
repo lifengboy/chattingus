@@ -21,6 +21,7 @@
     </decorator>
     <excludes>
         <pattern>*/login*</pattern>
+        <pattern>*/register/*</pattern>
         <pattern>/sessions/*</pattern>
     </excludes>
 </decorators>

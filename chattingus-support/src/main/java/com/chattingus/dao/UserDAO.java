@@ -126,10 +126,19 @@ public class UserDAO extends CobarClientBaseDao {
     public List<User> getUserListByUserIds(List<Integer> ids) {
         Map<String, Object> params = new HashMap<String, Object>(1);
         params.put("keys", ids);
+        if(ids.size() == 0){
+            return null;
+        }
         return (List<User>) getSqlMapClientTemplate().queryForList("User.getUserListByUserIds", params);
     }
 
     public int setAllUserOffLine() {
         return getSqlMapClientTemplate().update("User.setAllUserOffLine");
+    }
+
+    public User getUserByUsername(String username) {
+        Map<String, Object> params = new HashMap<String, Object>(1);
+        params.put("username", username);
+        return (User) getSqlMapClientTemplate().queryForObject("User.getUserByUsername", params);
     }
 }

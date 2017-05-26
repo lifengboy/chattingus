@@ -75,7 +75,7 @@
         </dependencies>
 
         <build>
-            <finalName>chatting-web</finalName>
+            <finalName>chattingus</finalName>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

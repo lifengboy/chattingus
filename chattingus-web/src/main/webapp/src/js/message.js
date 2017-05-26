@@ -153,11 +153,11 @@ function goToHistoryBottom(){
 $(function(){
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
+//        websocket = new WebSocket("ws://192.168.59.4/messageWebSocket");
 //        websocket = new WebSocket("ws://172.16.10.5/messageWebSocket");
 //        websocket = new WebSocket("ws://localhost/messageWebSocket");
 //        websocket = new WebSocket("ws://192.168.0.103/messageWebSocket");
-        websocket = new WebSocket("ws://192.168.0.101/messageWebSocket");
-//        websocket = new WebSocket("ws://192.168.59.4/messageWebSocket");
+        websocket = new WebSocket("ws://119.23.235.251/messageWebSocket");
     } else {
         setMessageInnerHTML('当前浏览器 Not support websocket')
     }

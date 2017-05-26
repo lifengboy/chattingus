@@ -34,7 +34,7 @@ public class UserController extends BaseController{
     @RequestMapping(value="message")
     public ModelAndView message () {
         User user = sessionService.getUser();
-        logger.info("用户名："+user.getUsername()+"查询了消息");
+        logger.info("用户名："+user.getUsername()+"，昵称："+user.getNick()+"查询了消息");
         ModelAndView modelAndView = new ModelAndView("message");
         modelAndView.addObject("nav","message");
         modelAndView.addObject(user);
@@ -48,7 +48,7 @@ public class UserController extends BaseController{
     @RequestMapping(value="friend")
     public ModelAndView friend () throws Exception {
         User user = sessionService.getUser();
-        logger.info("用户名："+user.getUsername()+"查询了好友");
+        logger.info("用户名："+user.getUsername()+"，昵称："+user.getNick()+"查询了好友");
         ModelAndView modelAndView = new ModelAndView("friend");
         modelAndView.addObject("nav","friend");
         modelAndView.addObject(user);

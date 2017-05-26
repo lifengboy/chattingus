@@ -34,6 +34,13 @@ public class UserService {
     }
 
     /**
+     * 根据username查找
+     */
+    public User getUserByUsername(String username) {
+        return userDAO.getUserByUsername(username);
+    }
+
+    /**
      * 根据主键查找
     */
     public User getUserByKey(Integer userId, String username) {

@@ -6,9 +6,11 @@
     <meta charset="UTF-8">
     <title>我的好友</title>
     <link href="/semantic-ui/semantic.min.css" rel="stylesheet" />
-
 </head>
 <body>
+<script type="text/javascript" src="/src/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/src/js/utils/template.js"></script>
+<script type="text/javascript" src="/src/js/friend.js"></script>
 <h1>欢迎您</h1>
 你的ip是：${user.ip}
 用户名是：${user.username},us号是<span id="userIdSpan">${user.userId}</span>,昵称是：<span id="nickSpan">${user.nick}</span><br/><br/>
@@ -81,11 +83,5 @@
         </form>
     </div>
 </div>
-
-<script type="text/javascript" src="/src/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="/src/js/friend.js"></script>
-<script type="text/javascript" src="/src/js/message.js"></script>
-<script type="text/javascript" src="/semantic-ui/semantic.js"></script>
-<script src="/src/js/utils/template.js"></script>
 </body>
 </html>
